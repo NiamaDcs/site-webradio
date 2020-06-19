@@ -1,0 +1,61 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('profile.setting.index') }}">
+        <div class="sidebar-brand-text mx-3">MikeSylv</div>
+        <i class="fas fa-fw far fa-edit"></i>
+    </a>
+
+    <!--Avatar-->
+    <a class="nav-link d-flex flex-column align-items-center" href="#">
+        <div class="nav-item">
+            <img class="rounded-circle logo-setting" src="../../../assets/artist image.png"/>
+        </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('profile.banni') }}">
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <!-- Nav Item - radios -->
+    <li class="nav-item active d-flex align-items-center justify-content-center">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('profile.banni.radios') }}">
+            <span>Radios</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Nav Item -status -->
+    <li class="nav-item active">
+        <span class="nav-link d-flex align-items-center justify-content-center" href="#">
+            Status de la chaîne : Banni 
+        </span>
+    </li>
+    <li class="nav-item active d-flex align-items-center justify-content-center">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('profile.page') }}">
+            <span>Pourquoi ?</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider d-none d-md-block" id="deconnexion">
+    
+    <!-- Nav Item - deconexion -->
+    <li class="nav-item active" >
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('logout') }}">
+            <span>se déconnecter</span>
+        </a>
+    </li>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+<!-- Content Wrapper -->
+<div id="content-wrapper">

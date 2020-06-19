@@ -1,0 +1,41 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content border0">
+           <div class="modal-header border-bottom-0" style="height: 100px;">
+                <span class="rounded-circle imgModal border border1"></span>
+           </div>
+           <div class="row">
+                <div class="col-sm-12">
+                        <form method="post">
+                                 <div class="alert alert-danger" style="display:none;font-size: 0.7rem;" id="login-alert"></div>
+                                 <div class="alert alert-success" style="display:none;font-size: 0.7rem;" id="login-success"></div>
+                            <div class="form-group champ">
+                                 <input type="email" id="login_email" class="form-control" name="_username" placeholder="Email">
+                            </div>
+
+                            <div class="form-group champ">
+                                 <input type="password" id="login_password" class="form-control" name="_password" placeholder="Mot de passe"> 
+                            </div>
+
+                             <input type="hidden" name="api_token" id="api_token">
+
+                            <div class="form-group champ">
+                                <button  id="login" type="submit" class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;">Connexion</button>
+                            </div>
+
+                                <div class="fb-login-button" data-width="280" data-size="medium" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false">
+                                </div>
+                        </form>
+                        <div class="modal-footer">
+                            <ul class="pl-0 d-flex flex-column w-100">
+                                <li class=" d-lg-inline text-gray-600 small text-center" style="display: inline-block">Pas encore inscrit ? <a class="text-pink" href="#registerModal" data-toggle="modal" data-dismiss="modal">Inscrivez-vous</a></li>
+                                <li class=" d-lg-inline text-gray-600 small text-center" style="display: inline-block">Mot de passe oublié ? <a class="text-pink" href="#passwordLostModal" data-toggle="modal" data-dismiss="modal">C’est ici</a></li>
+                            </ul>
+                        </div>          
+                </div>
+           </div>
+
+        </div>
+    </div>
+</div>

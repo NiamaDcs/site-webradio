@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'users/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'users/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'users/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="jumbotron pt-1">
+
+                <!-- Page Heading -->
+                <div class="mb-1">
+                    <h4 class="h3 mb-0 text-gray-800">Planning</h4>
+                </div>
+
+                {% include 'users/planning/calendar.html.twig' %}
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'users/planning/script.html.twig' %}
+
+</body>
+
+</html>

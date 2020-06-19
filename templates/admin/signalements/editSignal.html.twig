@@ -1,0 +1,38 @@
+<!-- Modal -->
+  <div class="modal fade" id="myedit" role="dialog">
+    <div class="modal-dialog remove">
+    
+      <!-- Modal content-->
+      <div class="modal-content removeUser">
+                <div class="rounded-circle imgModalRemove border border1 "></div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                            <div class="form-group champ">
+                                 <input type="text" id="update_channel_signalements_id" class="form-control" placeholder="Insérez l'identifiant du signalement" required>
+                            </div>
+
+                            <div class="form-group champ">
+                                <select name="format" class="form-control" id="format-update" style="text-align:center;">
+                                    
+                                    <option selected disabled>Motif de signalement</option>
+                                    <option value="Vocabulaire abusif">Vocabulaire abusif</option>
+                                    <option value="Vocabulaire à caractère sexuel">Vocabulaire à caractère sexuel</option>
+                                    <option value="Allusion au suicide">Allusion au suicide</option>
+                                    <option value="Vocabulaire à caractère raciste ou sexiste">Vocabulaire à caractère raciste ou sexiste</option>
+                                    <option value="Vocabulaire antisémite ou apologie au terrorisme">Vocabulaire antisémite ou apologie au terrorisme</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group champ">
+                                <button  id="update_channel_signalements_form" type="submit" class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;">Mettre à jour le signalement</button>
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

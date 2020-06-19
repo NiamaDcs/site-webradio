@@ -1,0 +1,71 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center mt-5" href="{{ path('superadmin.setting.index')}}">
+        <div class="sidebar-brand-text mx-2">Super-Administrateur</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('superadmin.index') }}">
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+     <!-- Divider -->
+   
+
+    <!-- Nav Item - Utilisateurs -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('superadmin.users.index') }}">
+            <span>Utilisateurs</span>
+        </a>
+    </li>    
+
+    <!-- Divider -->
+ 
+
+    <!-- Nav Item - chaines -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('superadmin.channel.index') }}">
+            <span>Chaînes</span>
+        </a>
+    </li>
+
+   
+
+    <!-- Nav Item - signalements -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('superadmin.signal.index') }}">
+            <span>Signalements</span>
+        </a>
+    </li>
+   
+      <!-- Nav Item - notifications -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('superadmin.notification') }}">
+            <span>Notifications</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider my-0">
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block" id="deconnexion">
+
+
+    <!-- Nav Item - logout -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('logout') }}">
+            <span>Se déconnecter</span></a>
+    </li>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+<!-- Content Wrapper -->
+<div id="content-wrapper">

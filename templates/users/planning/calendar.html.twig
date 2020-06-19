@@ -1,0 +1,27 @@
+                <div class="row">
+                    <div class="col-xl-12 d-flex flex-row align-items-center justify-content-between mx-sm-3">
+                        <span>
+                            <a href="{{path('profile.library.index')}}" class="btn couleur-principal"> Bibliothèque de musiques</a>
+                        </span>
+
+                        <h1 class="text-black">{{ monthName }} {{ year }}</h1>
+
+                        <span>
+                            <a href="{#{ path() }#}" class="btn couleur-btn">Précedent</a>
+                            <a href=" {#{ path() }#}" class="btn">Aujourd'hui</a>
+                            <a href="{{ path('profile.planning.nextMonth') }}" class="btn couleur-btn">Suivant</a>
+                        </span>
+                    </div>
+                </div>
+                <div class="row container mt-3 p-0">
+                    <div class="col-md-12 p-0 w-100">
+                        <div class="card shadow mb-4 w-100">
+                            <!-- Card Body -->
+                            <div class="card-body calendar w-100 p-0">
+                                <div class="table-responsive">
+                                    {{ calendar|raw }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>

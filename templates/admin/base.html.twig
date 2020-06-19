@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'admin/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'admin/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'admin/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="">
+                    <h3 class="h3 mb-2 text-gray-800">Dashboard</h3>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!-- Nombre d’utilisateurs Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-principal justify-content-center">Nombre d’utilisateurs</div>
+                                    <div id="nombre_dutilisateurs" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre d’abonnés Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-bleue">Nombre d’abonnés</div>
+                                    <div id="nombre_dabonnes" class="h5 mb-0 font-weight-bold text-gray-800" id="nbAbonne"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Total d'écoutes Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-turquoise">Total d'utilisateurs inactifs</div>
+                                    <div id="total_decoutes" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre de chaînes créée Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2  mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-purple">Nombre de chaînes créée</div>
+                                    <div id="nombre_chaines_creee" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Content Row -->
+
+            <!-- 2eme range -->
+                <div class="row">
+                    <!-- Nombre d’utilisateurs Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-bleue justify-content-center"> Total de chaînes inactives</div>
+                                    <div id="nombre_dutilisateurs" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Total utilisateurs actifs Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-turquoise justify-content-center">Total utilisateurs actifs</div>
+                                    <div id="nombre_dutilisateurs" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre d’utilisateurs Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-purple justify-content-center">Total de signalements</div>
+                                    <div id="nombre_dutilisateurs" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre d’utilisateurs Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-principal justify-content-center">Total chaîne bannie</div>
+                                    <div id="nombre_dutilisateurs" class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /content Row -->
+
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="text-purple">Nombre d’inscrits par mois</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-area">
+                            <canvas id="myAreaChart"></canvas>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- Pie Chart -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="text-purple">Nombre d’abonnements par jour</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                            </div>
+                            <div class="mt-4 text-center small">
+                            <span class="mr-2 text-black">
+                                <i class="fas fa-circle text-primary"></i> Lundi
+                            </span>
+                            <span class="mr-2 text-black">
+                                <i class="fas fa-circle text-success"></i> Mercredi 
+                            </span>
+                            <span class="mr-2 text-black">
+                                <i class="fas fa-circle text-info"></i> Samedi
+                            </span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Content Row -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'admin/script.html.twig' %}
+
+</body>
+
+</html>

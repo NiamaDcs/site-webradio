@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'superAdmin/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'superAdmin/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'superAdmin/navigation.html.twig' %}
+            
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="main d-flex flex-column align-items-center justify-content-center">
+            
+                    <!--input-->
+                    <div class="row mb-5">
+                        <div class="col-sm">
+                            <div class="form-group notifications" id="name">
+                                <input type='text' class='form-control text-center text-black' placeholder='Title' value=''>
+                            </div>
+                            <div class="form-group notifications" id="nomchaine">
+                                <input type='text' class='form-control text-center text-black' placeholder='Message' value=''>
+                            </div>
+                            <div class="form-group notifications">
+                                <input type="button" id="button-settingsAdmin" class="form-control border-0 font-weight-bold text-white"  style="background-color:#EF0051;" value="Envoyer">
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'superAdmin/notifications/script.html.twig' %}
+
+</body>
+
+</html>

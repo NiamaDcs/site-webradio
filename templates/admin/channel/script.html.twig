@@ -1,0 +1,179 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+ <!-- Page level plugins -->
+  <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+
+    const token = localStorage.getItem("token");
+    let IdChannel;
+
+    if(token !== ""){
+
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/channels/all",
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+
+        }).done((response)=>{
+
+            if(response != undefined) {
+
+                    let mytab;
+
+                    for(let i=0; i<response.channels.length; i++){
+                        
+                        mytab += '<tr><td ><img class="rounded-circle" style="font-size:2em; width:31px; height:32px;" src="'+response.channels[i].avatar
+                        +'" id="profil"></td><td >'+response.channels[i].channel_name
+                        +'</td><td >'+response.channels[i].status
+                        +'</td><td ><a href="#bannirModal" data-toggle="modal" data-dismiss="modal" class="far fa-trash-alt fa-2x" id="'
+                        +response.channels[i]._id+'"></a><a href="/admin/channel/edit/'+response.channels[i]._id+'" class="fa-2x far fa-edit" id="'
+                        +response.channels[i]._id+'"></a></td></tr>';
+                    }
+                    
+                    $("#channels-corps").append(mytab);
+
+                    $('.fa-edit').on("click", function(){
+
+                        let myId = $(this).attr("id");
+
+                       localStorage.setItem("userChannelId", myId);
+
+
+                        console.log(myId);
+
+                    });
+
+                    // recup id pour supprimer
+                    $('.fa-trash-alt').on("click", function(){
+
+                        let deleteId = $(this).attr("id");
+
+                       localStorage.setItem("deleteChannelId", deleteId);
+                       
+                             window.onload = load;
+                        console.log(deleteId);
+
+                    });
+            }
+            console.log(response);
+
+        }).fail((error)=>{
+            console.log(error);
+        });
+
+        /*
+        *Suppression d'utilisateur
+        */
+        $('#deleteChannel').on("click", function(){
+
+            let channelIdelete = localStorage.getItem("deleteChannelId");
+
+              $.ajax({
+                type: "PUT", 
+                url: "https://webradio-stream.herokuapp.com/authorized/channels/banish/"+channelIdelete, 
+                headers: {
+                    'Authorization':'Bearer ' + token
+                }
+            }).done((response)=>{
+
+                localStorage.removeItem("deleteChannelId");
+
+                $('#messageSucces').html(response.message);
+                $('#messageSucces').css("display","block");
+                console.log(response.message);
+
+            }).fail((error)=>{
+
+                console.log(error);
+
+            });
+
+        });// fin delete
+
+    }// fin if
+
+
+
+   /* function pagination () {
+
+          function makeList() {
+                        for (x = 0; x < response.channels.length; x++)
+                            mytab +="<tr><td ><img class='rounded-circle' style='font-size:2em; width:31px; height:32px;' src='"+response.channels[x].avatar
+                        +"' id='profil'></td><td >"+response.channels[x].channel_name
+                        +"</td><td >"+response.channels[x].status
+                        +"</td><td ><a href='#bannirModal' data-toggle='modal' data-dismiss='modal' class='far fa-trash-alt fa-2x'></a><a href='#' class='fa-2x far fa-edit' id='"
+                        +channelId+"'></a></td></tr>";
+
+                        numberOfPages = getNumberOfPages();
+                    }
+
+                    function getNumberOfPages() {
+                        return Math.ceil(response.channels.length / numberPerPage);
+                    }
+
+                    function nextPage() {
+                        currentPage += 1;
+                        loadList();
+                    }
+
+                    function previousPage() {
+                        currentPage -= 1;
+                        loadList();
+                    }
+
+                    function loadList() {
+                        let begin = ((currentPage - 1) * numberPerPage);
+                        let end = begin + numberPerPage;
+
+                        pageList = list.slice(begin, end);
+                        drawList();
+                        check();
+                    }
+                
+                    function drawList() {
+                        let mypage = $("#pagination_data");
+                        for (r = 0; r < pageList.length; r++) {
+                            mypage += pageList[r] + "<br/>";
+                        }
+
+                        $("#pagination_data").html(mypage);
+                    }
+
+                    function check() {
+                        document.getElementById("next").disabled = currentPage == numberOfPages ? true : false;
+                        document.getElementById("previous").disabled = currentPage == 1 ? true : false;
+                        document.getElementById("first").disabled = currentPage == 1 ? true : false;
+                        document.getElementById("last").disabled = currentPage == numberOfPages ? true : false;
+                    }
+
+                    function load() {
+                        makeList();
+                        loadList();
+                    }
+                        
+                    window.onload = load;
+        
+    }// fin fonction*/
+   
+
+});
+
+
+</script>

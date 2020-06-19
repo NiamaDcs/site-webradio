@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'admin/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'admin/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'admin/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 d-flex">
+                        <a class="retour mt-auto mb-1" href="{{ path('admin.users.index') }}" >
+                            <i id="fleche-retour" class="fas fa-long-arrow-alt-left"></i>
+                            <button id="bouton-retour" class="btn btn-sm rounded-pill">retour</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="main d-flex flex-column align-items-center justify-content-center">
+                
+                    <div class="row col-xl-12 alert alert-success text-center"  style="display: none;" id="newcompte" role="alert"></div>
+                    
+                    <!--input-->
+                    <div class="row mb-5" style="margin-top: 8rem;">
+                        <div class="col-sm">
+
+                            <div class="form-group adduser" id="emailadd">
+                                <input type='text' id="email" class='form-control text-center text-black' placeholder='Email' value=''>
+                            </div>
+
+                            <div class="form-group adduser" id="name">
+                                <input type='text' id="username" class='form-control text-center text-black' placeholder='Username' value=''>
+                            </div>
+
+
+                            <div class="form-group adduser">
+                                <input type="submit" id="saveUser" class="form-control border-0 font-weight-bold text-white btn_submit"  style="background-color:#EF0051;" value="Ajouter un utilisateur">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>  
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+ 
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+   {% include 'admin/user/new/script.html.twig' %}
+</body>
+
+</html>
+

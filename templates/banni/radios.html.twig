@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'Users/Banni/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'Users/Banni/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'Users/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="conteneur d-flex flex-column align-items-center justify-content-center">
+                    <div class="row recherche">
+                        <div class="col"> 
+                            <!-- Search form -->
+                            <div class="form-group has-search">
+                                <span class="fa fa-search form-control-feedback"></span>
+                                <input type="text" class="form-control text-dark" placeholder="Rechercher une radio">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row toutesRadio">
+                        <div class="col radio">
+                            <!--titre -->
+                            <div class="text-dark">
+                                <h5>Radios les plus écoutés</h5>
+                            </div>
+                            <hr class=" mt-4 diviser">
+                        </div>
+                    </div>
+                    <div class="row col-sm mt-1 tabradio">
+                        <table id='tabAccueil' class='border0 tabAccueil'>
+                            <tbody id="list-radio" class="accueilTab">
+                            </tbody>
+                        </table>
+                    </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'Users/Banni/script.html.twig' %}
+
+</body>
+
+</html>

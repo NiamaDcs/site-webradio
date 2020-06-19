@@ -1,0 +1,274 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/js/demo/chart-area-demo.js"></script>
+<script src="/js/demo/chart-pie-demo.js"></script>
+
+<script>
+
+$(document).ready(function() {
+
+    String.prototype.rtrim = function() {
+        return this.replace(/\s+$/, "");
+    }
+
+        function inputUsername(inputData,input){
+            let usernameData = inputData.rtrim();
+            let usernameInput = input;
+
+            if(usernameData.length < 1){
+                usernameInput.after('<div class="erreur text-dark small" style="font-size: xx-small;">Le nom d\'utilisateur doit être de 3 caractères minimum et ne peux pas contenir d\'espace</div>');   
+                
+            }else{
+                if(usernameData > 10) {
+                    usernameInput.after('<div class="erreur text-dark small" style="font-size: xx-small;">Le nom d\'utilisateur doit être  moins de 10 caractères</div>');
+                }
+                return usernameData;
+                
+            }
+        }//  verify username
+
+    const reset = () => {
+        $(".btn_submit").attr("disabled", false);
+        $(".btn_submit").css("background-color", "#EF0051");
+        $(".btn_submit").hover(() => { $(".btn_submit").css("background-color", "#D31052") })
+    };
+
+    const disable = () => {
+        $(".btn_submit").attr("disabled", true);
+        $(".btn_submit").css("background-color", "gray");
+    }
+
+    let firebaseConfig;
+    let downloadUrl;
+
+    
+    const token = localStorage.getItem("token");
+    let idChannel = localStorage.getItem("userChannelId");
+
+
+    if(token !== "" || idChannel !=="") {
+
+        /*
+        * affiche une chaine 
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/channels/"+idChannel,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('#channels').attr('value', response.channel.channel_name);
+                    $('#profil').attr('src', response.channel.avatar);
+                    $('#nbEcoute').html(response.channel.nbr_ecoute);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });
+
+        
+
+        /*
+        * Total de stream crée pour une chaîne
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/stats/stream/"+idChannel,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('nbStream').html(response.stream_crée);
+                    console.log(response);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });
+    // fin stream total pour chaine   
+
+
+        /*
+        * Total de favoris d'une chaîne
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/stats/stream/plan/5e96bc595ca841cb25233bf7",
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('#nbFavoris').html(response.favoris);
+                   // console.log(response);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });// fin Total de favoris d'une chaîne
+
+
+        /*
+        * Total de plannification pour un utilisateur
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/stats/stream/plan/"+idChannel,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('#nbPlan').html(response.nombre_plannification);
+                    //console.log(response);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });// 
+
+ 
+
+        //firebase
+        $.ajax({
+            type: "GET",
+            url: "/firebase",
+        }).done((data) =>{
+
+            firebaseConfig = {
+                apiKey: data.apiKey,
+                authDomain: data.authDomain,
+                databaseURL: data.databaseURL,
+                projectId: data.projectId,
+                storageBucket: data.storageBucket
+            };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // On détecte le changement de fichier
+        $('#cameraInput').on('change', function() {
+            // On récupère le nouveau fichier
+            let selectedFile = event.target.files[0];
+
+        
+            let filename = $('#cameraInput').val().replace(/C:\\fakepath\\/i, '');
+            let storageRef = firebase.storage().ref('/User/channel'+idChannel+filename);
+
+            // On envoi le fichier à Firebase
+            let upload = storageRef.put(selectedFile);
+
+            // Le traitement Firebase se fait ici
+            upload.on('state_changed', function(snapshot) {
+
+            }, function(error) {
+                // Si Firebase renvoi une error on l'a met ici
+                console.log(error)
+            }, function() {
+                // On récupère l'URL téléchargeable
+                downloadUrl = upload.snapshot.downloadURL;
+                // On l'affiche
+                 console.log(downloadUrl);
+            
+                // On remplace l'URL de l'image par la nouvelle
+                    $('#profil').attr('src', downloadUrl);
+                    $('#logo-setting').attr('src', downloadUrl) 
+
+            });
+        });// change profil 
+
+
+        $('#button-settingsAdmin').click(function(e){
+                e.preventDefault();
+                disable();
+
+                let channels = $('#channels').val();
+                let inputChannel = $('#channels');
+
+                let profil = $('#profil').attr('src');
+
+                let channelName = inputUsername(channels,inputChannel);
+
+             if(token !== "" || channelName !== undefined || idChannel !==""){
+                        
+                 
+                $.ajax({
+                    type: "PUT", 
+                    url: "https://webradio-stream.herokuapp.com/authorized/channels/update/"+idChannel, 
+                     headers: {
+                        'Authorization':'Bearer ' + token
+                    },
+                    data:{
+                        avatar: profil,
+                        name: channelName,
+                    },
+                    dataType: 'json'
+                }).done((response)=>{
+                        reset();
+
+                if(response.message != undefined)
+                {
+                    $('#updatecompte').html(response.message);
+                    $('#updatecompte').css("display","block");
+
+                    console.log(response.message);
+                }
+
+                }).fail((error)=>{
+
+                    reset();
+                    console.log(error);
+
+                })
+
+            }//if
+
+        });  //fin 
+
+
+        }).fail((error) =>{
+
+            console.log(error);
+        });
+    }// fin de grand if
+
+    
+    
+});
+</script>

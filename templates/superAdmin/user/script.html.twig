@@ -1,0 +1,115 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+
+    const token = localStorage.getItem("token");
+    let idUser;
+
+    if(token !== ""){ 
+
+        //recherche
+        $("#myInput").on("keyup", function() {
+            let value = $(this).val().toLowerCase();
+
+            $("#users-corps tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+
+
+        $.ajax({
+            type: "GET", 
+            url: 'https://webradio-stream.herokuapp.com/authorized/users', 
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response)=>{
+            
+            if(response != undefined) {
+
+                let mytab;
+
+                for(let i=0; i<response.users.length; i++){
+
+                    mytab += '<tr><td ><img class="rounded-circle" style="font-size:2em; width:31px; height:32px;" src="'+response.users[i].avatar
+                    +'" id="profil"></td><td >'+response.users[i].username
+                    +'</td><td >'+response.users[i].email
+                    +'</td><td >'+response.users[i].username
+                    +'</td><td >'+response.users[i].status
+                    +'</td><td ><a href="#bannirModal" data-toggle="modal" data-dismiss="modal" id="'
+                    +response.users[i].user_id+'" class="far fa-trash-alt fa-2x"></a><a href="/superadmin/users/edit/'
+                    +response.users[i].user_id+'" class="fa-2x far fa-edit" id="'
+                    +response.users[i].user_id+'"></a></td></tr>';
+                }
+                
+                    $("#users-corps").append(mytab);
+
+                    $('.fa-edit').on("click", function(){
+
+                        let myId = $(this).attr("id");
+
+                       localStorage.setItem("idForUser", myId);
+
+                        console.log(myId);
+
+                    });
+
+                    $('.fa-trash-alt').on("click", function(){
+
+                        let deleteId = $(this).attr("id");
+
+                       localStorage.setItem("deleteUserId", deleteId);
+
+                        console.log(deleteId); 
+
+                    });// fin bannir
+            }
+            console.log(response);
+
+        }).fail((error)=>{
+            console.log(error);
+        });
+
+        /*
+        *Suppression d'utilisateur
+        */
+        $('#deleteUser').on("click", function(){
+
+            let user_id = localStorage.getItem("deleteUserId");
+
+              $.ajax({
+                type: "DELETE", 
+                url: "https://webradio-stream.herokuapp.com/authorized/users/delete/"+user_id, 
+                headers: {
+                    'Authorization':'Bearer ' + token
+                }
+            }).done((response)=>{
+
+                localStorage.removeItem("deleteUserId");
+                console.log(response.message);
+
+            }).fail((error)=>{
+
+                console.log(error);
+
+            });
+
+        });// fin delete
+  
+
+    }// fin if
+
+
+
+
+});
+</script>

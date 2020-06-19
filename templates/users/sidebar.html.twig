@@ -1,0 +1,84 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('setting.index') }}">
+        <div class="sidebar-brand-text mx-2" id="myname"></div>
+        <i class="fas fa-fw far fa-edit" id="edit-profil"></i>
+    </a>
+
+    <!--Avatar-->
+    <a class="nav-link d-flex flex-column align-items-center" href="#">
+        <div class="nav-item">
+             <img class="rounded-circle logo-setting" id="logo-setting" src="https://firebasestorage.googleapis.com/v0/b/webradio-stream.appspot.com/o/User%2F70element-1.png?alt=media&token=fa8fa419-9e5f-4738-b2de-85536002a0d1"/>
+        </div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('profile.index') }}">
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <!-- Nav Item - Planning -->
+    <li class="nav-item active d-flex align-items-center justify-content-center">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('profile.planning.index') }}">
+            <span>Planification</span>
+        </a>
+    </li>
+    <!-- Nav Item - radios -->
+    <li class="nav-item active d-flex align-items-center justify-content-center">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('radios.index') }}">
+            <span>Radios</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Nav Item -status -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="#">
+            <span>Status de la chaîne : <span id='status'></span></span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block" id="deconnexion">
+    
+    <!-- Nav Item - deconexion -->
+    <li class="nav-item active" >
+        <a class="nav-link d-flex align-items-center justify-content-center" id="deconnecter" href="{{ path('logout') }}">
+            <span>Se déconnecter</span>
+        </a>
+    </li>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+<!-- Content Wrapper -->
+<div id="content-wrapper">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script>
+
+
+    let store = true;
+    const token = localStorage.getItem("token");
+
+
+        if(token !== "") {
+        let username     =  localStorage.getItem("username");
+        let userAvatar   =  localStorage.getItem("avatar");
+        let userPassword =  localStorage.getItem("password");
+        let userId       =  localStorage.getItem("userId");
+        let channelId    =  localStorage.getItem("channelId");
+        let status       =  localStorage.getItem("status");
+
+        $('#myname').html(username);
+        $('#logo-setting').attr('src', userAvatar);
+        $('#status').html(status);
+    }
+</script>

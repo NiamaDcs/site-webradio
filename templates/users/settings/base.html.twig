@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'Users/head.html.twig' %}
+    {% block stylesheets %}
+         <link rel="stylesheet" href="{{ asset('css/darkmode/darkmode.css')}}">
+    {% endblock %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'Users/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'Users/navigation.html.twig' %}
+            <div class="container-fluid">
+                <div class="row col-xl-12 alert alert-success d-none" id="mycompte" role="alert">
+     
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-10 d-flex flex-column align-items-center justify-content-center">
+                        <div class="titre-setting">
+                            <h1 class="h2 mt-2 text-black">Gestion du compte</h1>
+                        </div>
+                    </div>
+                    <div class="col-xl-2">
+                        <ul>
+                            <li>
+                                <input id="s1" type="checkbox" class="switch">
+                                <label for="s1" class="text-black">Dark Mode</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main d-flex flex-column align-items-center justify-content-center">
+                    <div class="text-center row col-xl-12 alert alert-success"  style="display: none;" id="mycompte" role="alert"></div>
+
+                    <!--img logo-->
+                    <div class="image-upload">
+                        <label for="cameraInput">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/webradio-stream.appspot.com/o/User%2F70element-1.png?alt=media&token=fa8fa419-9e5f-4738-b2de-85536002a0d1" alt="" id="profil">
+                            <i class="far fa-edit" style="font-size:50px; color: #EF0051"></i>
+                        </label>
+                        <input type="file" accept="image/*" id="cameraInput">
+                    </div>
+
+                    <!--input-->
+
+                    <div class="row mb-3">
+                        <div class="col-sm">
+                            <div class="form-group setting">
+                                <input type='text' id="username" class='form-control text-center text-black' placeholder='username' value=''>
+                            </div>
+
+                            <div class="form-group setting">
+                                <input type="submit" id="update_user" class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;" value="Enregistrer">
+                            </div>
+                        </div>
+                     </div>  
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0 w-100 mb-5">
+                <form>
+                    <div class="text-center row col-xl-12 alert alert-success" style="display: none;" id="mychannels" role="alert">
+                         
+                    </div>
+
+                        <div class="col-xl-12 d-flex flex-column align-items-center justify-content-center">
+                            <div class="">
+                                <h2 class="h2 mb-2 text-black">Ma chaîne</h2>
+                            </div>
+                        </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm">
+
+                            <div class="image-upload">
+                                <label for="cameraInputChannel">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/webradio-stream.appspot.com/o/User%2F70element-1.png?alt=media&token=fa8fa419-9e5f-4738-b2de-85536002a0d1" alt="image" id="avatarChannel">
+                                    <i class="far fa-edit" style="font-size:50px; color: #EF0051"></i>
+                                </label>
+                                <input type="file" accept="image/*" id="cameraInputChannel">
+                            </div>
+
+                            <div class="form-group setting">
+                                <input type='text' id="channels" class='form-control text-center text-black' placeholder='nom de la chaine' value=''>
+                            </div>
+
+                            <div class="form-group setting">
+                                <input type="submit" id="channelSave" class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;" value="Enregistrer">
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0 w-100 mb-5">
+
+                <form>
+                    <div class="text-center row col-xl-12 alert alert-success"  style="display: none;" id="mypassword" role="alert">
+                         
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-xl-12 d-flex flex-column align-items-center justify-content-center">
+                            <div class="">
+                                <h2 class="h2 mb-2 text-black">Changer mon mot de passe</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm">
+
+                            <div class="form-group setting">
+                                <input type='password' id="password" class='form-control text-center text-black' placeholder='mot de passe' value=''>
+                            </div>
+
+                            <div class="form-group setting">
+                                <input type="submit" id="savePassword" class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;" value="Enregistrer">
+                            </div>
+                        </div>
+                    </div> 
+                </form>
+
+                </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'Users/Settings/script.html.twig' %}
+
+</body>
+</html>

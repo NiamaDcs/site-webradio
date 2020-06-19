@@ -1,0 +1,45 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script>
+//$(document).ready(function() {
+
+function myZik () {
+
+    let planif = document.createElement("DIV");
+    planif.setAttribute("class", "col-lg-3 col-md-4 col-6 border-right");
+    let link = document.createElement("a");
+    link.setAttribute("class", "d-block mb-4 h-100");
+
+    let mymusic = document.createElement("img");
+    mymusic.setAttribute("src", "https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg");
+    mymusic.setAttribute("class", "img-fluid img-thumbnail music"); 
+
+    let paraf = document.createElement("p");
+    paraf.setAttribute("class", "text-center");
+    paraf.innerHTML='music mp3';
+
+    let delemusic = document.createElement("span");
+    delemusic.setAttribute("class", "delete");
+    delemusic.innerHTML = "&times;";
+    link.appendChild(mymusic);
+    link.appendChild(paraf);
+    link.appendChild(delemusic);
+    planif.appendChild(link);
+
+    let blockMusic =  document.getElementById("timeline");
+    blockMusic.appendChild(planif);
+
+}
+    /*******
+      var elmnt = document.getElementById("p1");
+  elmnt.remove();/
+//});
+</script>

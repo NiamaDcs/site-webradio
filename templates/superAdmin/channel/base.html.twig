@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'superAdmin/head.html.twig' %}
+    {% include 'superAdmin/channel/script.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'superAdmin/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'superAdmin/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <div class="row mt-4 mb-2">
+                    <div class="col-xl-2">
+                        <h4 class="h4 text-gray-800">Chaînes</h4>
+                    </div>
+                    <div class="col-xl-10 d-flex"> 
+
+                        <div class="conteneur d-flex flex-column align-items-center justify-content-center">
+                            <div class="row recherche">
+                                    <div class="col">
+                                        <div class="form-group has-search ">
+                                            <span class="fa fa-search form-control-feedback"></span>
+                                            <input type="text" class="form-control text-dark" placeholder="Rechercher une radio" id="search"> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <!-- table -->
+                    <div class="col-xl-12">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="row col-sm-12">
+                                    <div class="table-responsive">
+                                     <table class="table table-bordered" id="channel-table" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Avatar</th>
+                                                    <th>Nom de la chaîne</th>
+                                                    <th>Status</th>
+                                                    <th>Management</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="channels-corps">
+
+                                            
+                                            </tbody>
+                                        </table> 
+                                    <div class="pagination mt-2 d-flex justify-content-center" id="pagination_data">
+                                        
+                                    </div>      
+                                  </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+       
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+ {% include 'superAdmin/channel/removeChannel/modal.html.twig' %}
+
+</body>
+
+</html>

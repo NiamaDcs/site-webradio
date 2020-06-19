@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'users/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'users/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'users/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+        
+            <div class="jumbotron pt-0">
+                <div class="container">
+
+                    <div class="conteneur d-flex flex-column align-items-center justify-content-center">
+                        <div class="row recherche">
+                            <div class="col">
+                                <div class="form-group has-search ">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="text" class="form-control text-dark" placeholder="Rechercher une radio"> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col ml-auto mr-auto">
+                            <!--titre -->
+                            <div class="text-dark">
+                                <h5>Radios les plus écoutés</h5>
+                            </div>
+                            <hr class=" mt-4 diviser">
+                        </div>
+                    </div>
+
+                    <div class="row col">
+                        <table id='tabAccueil' class='border0 tabAccueil'>
+                            <tbody id="list-radio" class="accueilTab">
+                                
+                                <!--<tr>
+                                    <td>
+                                        <img class='img-radio' src='' alt=''>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <audio class='myaudio' id='track'>
+                                            <source src="" type='audio/mp3' />Rien</audio>
+                                            <div id='player-container'>
+                                                <div id='play-pause' class='play'>Play</div>
+                                            </div>
+                                    </td>
+                                </tr>-->
+                                    
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'users/radios/script.html.twig' %}
+
+</body>
+
+</html>

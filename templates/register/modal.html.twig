@@ -1,0 +1,44 @@
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <div class="modal-content border0">
+           <div class="modal-header border-bottom-0" style="height: 100px;">
+                <span class="rounded-circle imgModal border border1"></span>
+           </div>
+
+            <form id="register_form">
+                <div class="alert alert-danger" style="display: none;font-size: 0.7rem;" id="register-alert"></div>
+                <div class="alert alert-success" style="display:none;font-size: 0.7rem;" id="register-success"></div>
+
+                <div class="form-group champ">
+                    <input type="email" id="register_email" class="form-control" name="email" placeholder="Email">
+                </div>
+
+                <div class="form-group champ">
+                    <input type="text" id="register_username" class="form-control" name="username" placeholder="Nom d'utilisateur">
+                </div>
+
+                <div class="form-group champ">
+                    <input type="password" id="register_password" class="form-control" name="password" placeholder="Mot de passe">
+                </div>
+                    <input type="hidden" class="show_token" name ="show_token" value="">
+
+                <div class="form-group champ">
+                    <button id="inscription" type="submit" class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;">Inscription</button>
+                </div>
+
+                <div class="fb-login-button" data-width="280" data-size="medium" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="false">
+                </div>
+             </form>
+
+            <div class="modal-footer">
+                <div class="pl-0 d-flex flex-column w-100">
+                    <li class="text-gray-600 small text-center" style="display: inline-block">Déjà un compte ? <a class="text-pink" href="#loginModal" data-toggle="modal" data-dismiss="modal">Connectez
+                    -vous</a></li>
+                    <li class="text-gray-600 small text-center" style="display: inline-block">Mot de passe oublié ? <a class="text-pink" href="#passwordLostModal" data-toggle="modal" data-dismiss="modal">C’est ici</a></li>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'pages/script.html.twig' %}

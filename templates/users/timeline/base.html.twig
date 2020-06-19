@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'Users/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'Users/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'Users/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="jumbotron pt-1 mb-0 pb-2">
+
+                <div class="row">
+                    <div class="col-xl-6 d-flex">
+                        <a class="retour mt-auto mb-1" href="{{ path('profile.planning.index') }}" >
+                            <i id="fleche-retour" class="fas fa-long-arrow-alt-left"></i>
+                            <button id="bouton-retour" class="btn btn-sm rounded-pill">Retour</button>
+                        </a>
+                    </div>
+                </div> 
+
+                <di class="container mt-4">
+
+                    <div class="row d-flex flex-column align-items-center justify-content-center">
+                        <h3 class="text-black mt-auto mb-3">Planification</h3>
+                    </div>
+                    
+                    <form>
+                        <div class="row mt-3">
+                            <div class="col-md-6 d-flex justify-content-end">
+                                <a class="btn mt-auto mb-4" role="button"  onclick="myZik()" id="bouton-ajout">Ajouter une musique</a>
+                            </div>
+                            <div class="col-md-6 d-flex flex-column justify-content-center mt-3">
+                                <span class="stopTimeline"></span>
+                                <span class="text-black text-center">Stop stream</span>
+                            </div>
+
+                        </div>
+                        <div class="row col-md-5 d-flex justify-content-end">
+                            <input type="date" class="form-control" id="eventdate" value="">
+                        </div>
+                        <div class="row col-md-12 mt-4">
+                            <div class="field1 d-flex justify-content-center">
+                                
+                                <div class="card shadow mb-4 w-100">
+                                    <div class='card-body planif1' id="timeline">
+                                        <div class="row text-center" id="timeline">
+                                            <!--<div class="col-lg-3 col-md-4 col-6 border-right" >
+                                                <a href="#" class="d-block mb-4 h-100">
+                                                    <img src="https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg" class="img-fluid img-thumbnail music">
+                                                    <p class="text-center">music mp3</p>
+                                                    <span class="delete">&times;</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 border-right" >
+                                                <a href="#" class="d-block mb-4 h-100">
+                                                    <img src="https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg" class="img-fluid img-thumbnail music">
+                                                    <p class="text-center">music mp3</p>
+                                                    <span class="delete">&times;</span>
+                                                </a>
+                                            </div>-->
+                                        </div><!--fin row-->
+                                    </div><!--/cardbody-->
+                                </div><!--/cardshadow-->
+                            </div>  
+                        </div>
+                         <div class="row col-md-5 d-flex justify-content-end mt-4">
+                            <input type="time" class="form-control" id="eventTime" value="">
+                        </div>
+                        <div class="row col-md-12 mt-4 mb-5">
+                            <div class="field2 d-flex justify-content-center">
+
+                                <div class="card shadow mb-4 w-100">
+                                    <div class='card-body planif2' id="timeline2">
+                                        <div class="row text-center" id="timeline2">
+                                            <!--<div class="col-lg-3 col-md-4 col-6 border-right" >
+                                                <a href="#" class="d-block mb-4 h-100">
+                                                    <img src="https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg" class="img-fluid img-thumbnail music">
+                                                    <p class="text-center">music mp3</p>
+                                                    <span class="delete">&times;</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-6 border-right" >
+                                                <a href="#" class="d-block mb-4 h-100">
+                                                    <img src="https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg" class="img-fluid img-thumbnail music">
+                                                    <p class="text-center">music mp3</p>
+                                                    <span class="delete">&times;</span>
+                                                </a>
+                                            </div>-->
+                                        </div><!--fin row-->
+                                    </div><!--/cardbody-->
+                                </div><!--/cardshadow-->
+
+                            </div> <!--/field2-->
+                        </div>
+                        <div class="row col-md-12 d-flex align-items-center justify-content-center mt-4 ml-2">
+                            <input type="button" class="form-control border-0 font-weight-bold text-white" style="background-color:#EF0051; width:200px" value="Valider la planification">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- /jumbotron -->
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'Users/Timeline/script.html.twig' %}
+
+</body>
+
+</html>

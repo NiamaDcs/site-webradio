@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'superAdmin/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'superAdmin/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'superAdmin/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div>
+                    <div class="row mb-1">
+                        <div class="col-xl-6  usernameChannel">
+                            <span class="text-black" id="nom"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 d-flex">
+                            <a class="retour mt-auto mb-1" href="{{ path('superadmin.channel.index') }}" >
+                                <i id="fleche-retour" class="fas fa-long-arrow-alt-left"></i>
+                                <button id="bouton-retour" class="btn btn-sm rounded-pill">retour</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="main d-flex flex-column align-items-center justify-content-center">
+                    
+                        <!--img logo-->
+                         <div class="image-upload">
+                            <label for="cameraInput">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/webradio-stream.appspot.com/o/User%2F70element-1.png?alt=media&token=fa8fa419-9e5f-4738-b2de-85536002a0d1" alt="img" id="profil">
+                                <i class="far fa-edit" style="font-size:50px; color: #EF0051"></i>
+                            </label>
+                            <input type="file" accept="image/*" id="cameraInput">
+                        </div>
+
+                        <!--input-->
+                        <div class="row mb-1">
+                            <div class="col-sm">
+                             
+                                <div class="form-group editchannel" >
+                                     <input type='text' id="channels" class='form-control text-center text-black' placeholder='nom de la chaine' value=''> 
+                                </div>
+                                <div class="form-group editchannel">
+                                    <input id="button-settingsAdmin" type='submit' class="form-control border-0 font-weight-bold text-white btn_submit" style="background-color:#EF0051;" value="Enregistrer">
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>  
+            </div>
+                <!--diviver -->
+               <hr class="sidebar-divider d-none d-md-block">
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+<!-- Nombre favoris Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-principal justify-content-center">Nombre favoris</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="nbFavoris"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre d’abonnés Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-bleue">Nombre d’ecoutes</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="nbEcoute"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Total de plannification Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-turquoise">Total de plannification</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="nbPlan"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <!-- Nombre de chaînes créée Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card shadow h-80 border-raduis py-2">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col mr-2  mb-2 d-flex flex-column align-items-center justify-content-center">
+                                    <div class="text-purple">Nombre de stream créée</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="nbStream"></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Content Row statist -->
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="text-purple">Nombre d’écoute par mois</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-area">
+                            <canvas id="myAreaChart"></canvas>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- Pie Chart -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="text-purple">Nombre d’abonnements par jour</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="chart-pie pt-4 pb-2">
+                            <canvas id="myPieChart"></canvas>
+                            </div>
+                            <div class="mt-4 text-center small">
+                            <span class="mr-2 text-black">
+                                <i class="fas fa-circle text-primary"></i> Lundi
+                            </span>
+                            <span class="mr-2 text-black">
+                                <i class="fas fa-circle text-success"></i> Mercredi 
+                            </span>
+                            <span class="mr-2 text-black">
+                                <i class="fas fa-circle text-info"></i> Samedi
+                            </span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Content Row -->
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'superAdmin/Channel/editChannel/script.html.twig' %}
+
+</body>
+
+</html>

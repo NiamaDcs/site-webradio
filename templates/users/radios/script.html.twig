@@ -1,0 +1,92 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('js/mainJs/index.js') }}"></script>
+
+<script>
+    
+$(document).ready(function() {
+
+    $.ajax({
+            type: "GET", 
+            url: 'https://webradio-stream.herokuapp.com/auth/radios/all', 
+        }).done((response)=>{
+            
+            if(response != undefined)
+            {
+                 myradio = response.radios[0];
+                      let mytab;
+
+                    for(let i=0; i<4; i++) {
+
+                        mytab += "<tr><td><img class='img-radio' src='"+response.radios[i].logo+"' alt=''></td><td style='color: black;'>"+response.radios[i].radio_name+"</td><td><audio class='myaudio' id='track-"+response.radios[i]._id+"'><source src='"+response.radios[i].Stream.direct_url+"' type='audio/mp3' />Rien</audio><div id='player-container'><div id='play-pause' class='play playPause' data-id='"+response.radios[i]._id+"'>Play</div></div></td></tr>"; 
+                    }
+
+                $("#list-radio").append(mytab);
+                   
+
+                  /* function stopAll() {
+
+                        if(store){
+                            $('.playPause').each(function(){
+
+                                if(track.play()){
+                                    
+                                    track.pause();
+                                    $(this).removeClass('pause');
+                                }
+                            });
+
+                            store = true;
+                        }
+
+                        store = false
+                       
+                    }*/
+
+                $('.playPause').click(function() {
+
+                    // une boucle pour voir si mes balises ont en play et le mettre ne pause each
+                    //$("#track-"+id)
+
+                    const id = $(this).data("id");
+                    let track =  document.getElementById("track-"+id); 
+                    
+                   // if (store) stopAll();
+
+                    if(track.paused) {
+
+                        track.play();
+
+                        $(this).addClass('pause');
+
+                    }else {
+
+                        track.pause();
+
+                        $(this).removeClass('pause');
+                    }
+                
+       
+                });
+
+            }
+            else console.log('failed');
+
+                console.log(response);
+
+        }).fail((error)=>{
+            console.log(error);
+        }); //fin radio
+
+    
+
+});
+</script>

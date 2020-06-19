@@ -1,0 +1,194 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- Core plugin JavaScript-->
+
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script src="../vendor/jquery/jquery.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="../vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="../js/demo/chart-area-demo.js"></script>
+<script src="../js/demo/chart-pie-demo.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    let store = true;
+    const token = localStorage.getItem("token");
+
+
+        /*if(token !== "") {
+        let username     =  localStorage.getItem("username");
+        let userAvatar   =  localStorage.getItem("avatar");
+        let userPassword =  localStorage.getItem("password");
+        let userId       =  localStorage.getItem("userId");
+        let channelId    =  localStorage.getItem("channelId");
+        let status       =  localStorage.getItem("status");
+
+        $('#myname').html(username);
+        $('#logo-setting').attr('src', userAvatar);
+        $('#username').attr('value', username);
+        $('#profil').attr('src', userAvatar);
+        $('#password').attr('src', userPassword);
+        $('#status').html(status);
+    }*/
+
+
+    /*if(token !== "")
+    {
+        let channelId = localStorage.getItem("channelId");
+        channelId = channelId;
+        let data = JSON.stringify({tokenChan: token, Idchannel: channelId});
+
+        //channel
+        $.ajax({
+            type: "POST", 
+            url: "/profile/channel/show", 
+            data: data,
+            dataType: 'json',
+            async: true,
+            success: function(response) {
+
+                if(response != undefined){
+
+                    localStorage.setItem("nbr_ecoute", response.channel.nbr_ecoute);
+                    localStorage.setItem("nbr_ecoute_global", response.channel.nbr_ecoute_global);
+
+                    let nbrEcoute = localStorage.getItem("nbr_ecoute");
+                    let nbEcouteGlobal = localStorage.getItem("nbr_ecoute_global");
+
+                    $('#nbPlaning').html(nbrEcoute);
+                    $('#ecouteGlobal').html(nbEcouteGlobal);
+                    $('#nbFavoris').html(nbrEcoute);
+                    $('#nbStream').html(nbrEcoute);
+                }
+                console.log(response);
+                channel = response;
+            },
+            error: function (err) {
+                
+                console.log(err);
+            }
+        });
+    }*/
+
+    let idChannel = localStorage.getItem("channelId");
+
+
+    if(token !== "" || idChannel !=="") {
+
+        /*
+        * affiche une chaine 
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/channels/"+idChannel,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('#channels').attr('value', response.channel.channel_name);
+                    $('#profil').attr('src', response.channel.avatar);
+                    $('#nbEcoute').html(response.channel.nbr_ecoute);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });
+
+        
+
+        /*
+        * Total de stream crée pour une chaîne
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/stats/stream/"+idChannel,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('nbStream').html(response.stream_crée);
+                    console.log(response.stream_crée);
+                }
+                console.log('total stream '+response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });
+        // fin stream total pour chaine   
+
+
+        /*
+        * Total de favoris d'une chaîne
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/stats/stream/plan/5e96bc595ca841cb25233bf7",
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                    $('#nbFavoris').html(response.favoris);
+                    //console.log(response.favoris);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });// fin Total de favoris d'une chaîne
+
+
+        /*
+        * Total de plannification pour un utilisateur
+        */
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/stats/stream/plan/"+idChannel,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+        }).done((response) =>{
+            
+                if(response != undefined)
+                {
+                   // $('#nbPlan').html(response.nombre_plannification);
+                    console.log('planification '+response);
+                }
+                console.log(response);
+
+        }).fail((error) =>{
+            
+            console.log(error);
+        });// 
+
+    }
+ 
+});
+ </script>

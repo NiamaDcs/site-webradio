@@ -1,0 +1,126 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+<script>
+//signal-corps
+
+$(document).ready(function() {
+
+    const token = localStorage.getItem("token");
+
+        const reset = () => {
+        $(".btn_submit").attr("disabled", false);
+        $(".btn_submit").css("background-color", "#EF0051");
+        $(".btn_submit").hover(() => { $(".btn_submit").css("background-color", "#D31052") })
+    };
+
+    const disable = () => {
+        $(".btn_submit").attr("disabled", true);
+        $(".btn_submit").css("background-color", "gray");
+    }
+String.prototype.rtrim = function() {
+    return this.replace(/\s+$/, "");
+}
+
+    function inputMotif(inputData,input){
+    let motifData = inputData.rtrim();
+    let motifInput = input;
+
+        if(motifData.length < 1){
+            motifInput.after('<div class="erreur text-dark small" style="font-size: xx-small;">Le motif ne peux pas être vide</div>');   
+            
+        }
+    }
+    if(token !== ""){
+
+        $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/signalements/all",
+            headers: {
+                'Authorization':'Bearer ' + token
+            },
+            dataType: "json",
+        }).done((response) =>{
+
+            if(response != undefined) {
+
+                 let mytab;
+            
+
+                    //for(let i=0; i<response.signalements.length; i++){
+
+                       mytab +='<tr><td >'+response.signalements[0].channel_id+'</td><td >'+response.signalements[0].channel_name
+                        +'</td><td ><a href="#" class="" id="'
+                        +response.signalements[0].channel_id+'">'
+                        +response.signalements[0].nombre_signalements+'</a></td><td><a href="#" data-toggle="modal" data-dismiss="modal" id="'
+                        +response.signalements[0].channel_id+'" class="far fa-trash-alt fa-2x"></a><a href="#myedit" data-toggle="modal" data-dismiss="modal" class="fa-2x far fa-edit" id="'
+                        +response.signalements[0].channel_id+'"></a></td></tr>';
+                        
+                       
+                    //}
+                    
+                    $("#signal-corps").append(mytab);  //const id = $(this).data("id")
+                                        
+
+                    $('.fa-edit').on("click", function(){
+
+                        let signalId = $(this).attr("id");
+
+                       //localStorage.setItem("signalId", signalId);
+                       $('#editSignal').modal("show");
+
+                       $('#update_channel_signalements_id').attr('value', signalId);
+
+                       $('#update_channel_signalements_form').on("click", function(e){
+
+                           e.preventDefault(); 
+                            disable();
+                           const signalement_id = $("#update_channel_signalements_id").val();
+
+                                let createUser = inputUsername(usernameShow,inpUser);///todo motif de la chaine a faire et supprression
+                            let data = {
+                                motif: $("#format-update").val()
+                            };
+
+                           $.ajax({
+                               type: "PUT",
+                               url: 'https://webradio-stream.herokuapp.com/authorized/signalement/update/'+signalement_id,
+                               data: data,
+                               headers: {
+                                    'Authorization':'Bearer ' + token
+                                },
+                           }).done( (data) =>{
+
+                                console.log(data);
+
+                           }).fail( (err) =>{
+
+                               console.log(err);
+                           })
+
+                       });
+
+                        console.log(signalId);
+
+                    });
+
+            }
+            console.log(response);
+
+        }).fail((error) =>{
+
+            console.log(error);
+        });
+    }
+
+});
+
+
+</script>

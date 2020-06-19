@@ -1,0 +1,138 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('js/mainJs/index.js') }}"></script>
+
+
+<script>
+console.log("new user")
+
+$(document).ready(function() {
+
+const token = localStorage.getItem("token");
+
+String.prototype.rtrim = function() {
+    return this.replace(/\s+$/, "");
+}
+
+
+function inputUsername(inputData,input){
+    let usernameData = inputData.rtrim();
+    let usernameInput = input;
+
+    if(usernameData.length < 1){
+        usernameInput.after('<div class="erreur text-dark small" style="font-size: xx-small;">Le nom d\'utilisateur doit être de 3 caractères minimum et ne peux pas contenir d\'espace</div>');   
+        
+    }else{
+        if(usernameData > 10) {
+            usernameInput.after('<div class="erreur text-dark small" style="font-size: xx-small;">Le nom d\'utilisateur doit être  moins de 10 caractères</div>');
+        }
+         return usernameData;
+           
+    }
+}//  verify username
+
+function inputEmail(inputData, input){
+    let emailData = inputData.rtrim();
+
+    emailInput = input;
+    if(emailData.length < 1) {
+        emailInput.after('<div class="erreur text-dark small" style="font-size: xx-small;">Ce champ est obligatoire</div>');
+    }else{
+        let regEx = /^[a-zA-Z0-9][a-zA-Z0-9._%+-]{0,63}@(?:[a-zA-Z0-9-]{1,63}\.){1,125}[a-zA-Z]{2,63}$/;
+        let validEmail = regEx.test(emailData);
+
+        if(!validEmail)
+        {
+            emailInput.after('<span class="erreur text-dark small" style="font-size: xx-small;">Merci de rentrer une adresse email valide</span>');
+        }
+        else{
+            return emailData;
+        }
+    }
+
+}//  email verify
+
+
+
+    const reset = () => {
+        $(".btn_submit").attr("disabled", false);
+        $(".btn_submit").css("background-color", "#EF0051");
+        $(".btn_submit").hover(() => { $(".btn_submit").css("background-color", "#D31052") })
+    };
+
+    const disable = () => {
+        $(".btn_submit").attr("disabled", true);
+        $(".btn_submit").css("background-color", "gray");
+    }
+
+
+
+        $('#saveUser').click(function(e){
+            e.preventDefault();
+            disable();
+
+            let email = $('#email').val();
+            let inpEmail = $('#email');
+
+            let username = $('#username').val();
+            let inpUser = $('#username');
+
+            let createEmail = inputEmail(email,inpEmail);
+            let createUser = inputUsername(username,inpUser);
+
+            let profilUrl = $('#profil').attr('src');
+
+            const token = localStorage.getItem("token");
+
+            if(token !== "" || createUser !== undefined || createEmail !== undefined){
+
+
+                $.ajax({
+                    type: "POST", 
+                    url: "https://webradio-stream.herokuapp.com/authorized/users/create", 
+                    headers: {
+                        'Authorization':'Bearer ' + token
+                    },
+                    data: {
+                        username: createUser,
+                        email: createEmail,
+                    },
+                }).done((response)=>{
+                    reset();
+
+                    if(response.message != undefined)
+                    {
+                        $('#newcompte').html(response.message);
+                        $('#newcompte').css("display","block");
+
+                        console.log(response.message);
+                    }
+                    console.log(response);
+
+                }).fail((error)=>{
+                    reset();
+
+                    console.log(error);
+
+                });//fin
+
+            }// if
+
+        }); // fin onclick 
+    
+});
+</script>
+ 
+ 

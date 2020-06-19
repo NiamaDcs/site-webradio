@@ -1,0 +1,290 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script src="{{ asset('js/mainJs/index.js') }}"></script>
+
+<script src="{{ asset('js/mainJs/index.js') }}"></script>
+
+<script>
+$(document).ready(function() {
+
+    const reset = () => {
+        $(".btn_submit").attr("disabled", false);
+        $(".btn_submit").css("background-color", "#EF0051");
+        $(".btn_submit").hover(() => { $(".btn_submit").css("background-color", "#D31052") })
+    };
+
+    const disable = () => {
+        $(".btn_submit").attr("disabled", true);
+        $(".btn_submit").css("background-color", "gray");
+    }
+
+    let users = {};
+    let channel = {};
+    let downloadURLUser;
+    
+
+    let store = true;
+    
+    const token      =  localStorage.getItem("token");
+    let userId       =  localStorage.getItem("userId");
+    let channelId    =  localStorage.getItem("channelId");
+    let username     =  localStorage.getItem("username");
+    let userAvatar   =  localStorage.getItem("avatar");
+    let userPassword =  localStorage.getItem("password");
+    let channelName = localStorage.getItem("channel_name");
+    let channelAvatar = localStorage.getItem("channel_avatar");
+
+    $('#channels').attr('value', channelName);
+    $('#profil').attr('src', channelAvatar);
+   
+    $('#username').attr('value', username);
+    $('#profil').attr('src', userAvatar);
+    $('#password').attr('value', userPassword);
+
+
+    let firebaseConfig;
+
+    $.ajax({
+        type: "GET",
+        url: '/firebase',
+    }).done((data) =>{
+
+        firebaseConfig = {
+            apiKey: data.apiKey,
+            authDomain: data.authDomain,
+            databaseURL: data.databaseURL,
+            projectId: data.projectId,
+            storageBucket: data.storageBucket
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // changement input
+        $('#cameraInput').on('change', function() {
+             
+            let selectedFile = event.target.files[0];
+
+            let filename = $('#cameraInput').val().replace(/C:\\fakepath\\/i, '');
+            let storageRef = firebase.storage().ref('/User/'+userId+ filename);
+
+            let upload = storageRef.put(selectedFile);
+
+            upload.on('state_changed', function(snapshot) {
+
+            }, function(error) {
+                console.log(error)
+            }, function() {
+                downloadURLUser = upload.snapshot.downloadURL;
+                $('#profil').attr('src', downloadURLUser);
+            });
+        }); // camera
+
+        if(token !== "") {
+
+            //user show 
+
+             $.ajax({
+                type: "GET", 
+                url: "https://webradio-stream.herokuapp.com/authorized/user/"+userId, 
+                headers: {
+                    'Authorization':'Bearer ' + token
+                }
+            }).done((response)=>{
+
+                if(response != undefined)
+                {
+
+                    localStorage.setItem("username", response.user[0].username);
+                    localStorage.setItem("avatar", response.user[0].avatar);
+                    localStorage.setItem("password", response.user[0].password);
+                    
+                    $('#username').attr('value', response.user[0].username);
+                    $('#profil').attr('src', response.user[0].avatar);
+                    $('#password').attr('value', response.user[0].password);
+                    $('#logo-setting').attr('src', response.user[0].avatar);
+                }
+                console.log(response);
+
+            }).fail((error)=>{
+
+                console.log(error);
+
+            });
+
+
+        // mettre à jour l'utilisateur
+        $('#update_user').click(function(e) {
+
+            e.preventDefault();
+            disable();
+            let downloadURL
+            let usernameShow = $('#username').val();
+            let profil = $('#profil').attr('src');
+            
+            $.ajax({ 
+                type: "PUT", 
+                url: "https://webradio-stream.herokuapp.com/authorized/users/"+userId, 
+                headers: {
+                    'Authorization':'Bearer ' + token
+                },
+                data: {
+                    avatar: profil,
+                    username: usernameShow,
+                },
+            }).done((response) =>{
+
+                $('#mycompte').html(response.message);
+                $('#mycompte').css("display","block");
+
+                console.log(response);
+                 reset();
+
+            }).fail( (err) =>{
+                reset();
+                $('#mycompte').css("display", "block");
+                $('#mycompte').html(err.responseJSON);
+                console.log(err.responseJSON)
+            });
+
+
+        }); // end setting
+
+           //show channel
+
+            $.ajax({
+            type: "GET",
+            url: "https://webradio-stream.herokuapp.com/authorized/channels/"+channelId,
+            headers: {
+                'Authorization':'Bearer ' + token
+            }
+
+            }).done((response) =>{
+            
+                if(response != undefined)
+                {
+
+                    localStorage.setItem("channel_name", response.channel.channel_name);
+                    localStorage.setItem("channel_avatar", response.channel.avatar);
+
+                    let channelName = localStorage.getItem("channel_name");
+                    let channelAvatar = localStorage.getItem("channel_avatar");
+
+                    $('#channels').attr('value', channelName);
+                    $('#profil').attr('src', channelAvatar);
+                }
+                console.log(response);
+                 
+
+            }).fail((error) =>{
+                
+                console.log(error);
+            });
+
+
+             //changer de avatar
+            $('#cameraInputChannel').on('change', function() {
+                let selectedFileChannel = event.target.files[0];
+
+                let filenameChannel = $('#cameraInputChannel').val().replace(/C:\\fakepath\\/i, '');
+                let storageRefChannel = firebase.storage().ref('/Channel/'+channelId+filenameChannel);
+
+                let upload = storageRefChannel.put(selectedFileChannel);
+
+                upload.on('state_changed', function(snapshot) {
+
+                }, function(error) {
+                    console.log(error)
+                }, function() {
+                    downloadURLChannel = upload.snapshot.downloadURL;
+                    $('#avatarChannel').attr('src', downloadURLChannel);
+                });
+            });
+
+            // update channell
+            $("#channelSave").click((e) => {
+                e.preventDefault(); 
+                disable();
+
+            let name = $('#channels').val();
+            let avatar = $('#avatarChannel').attr('src');
+            let downloadURLChannel = avatar;
+
+                $.ajax({
+                    type: "PUT",
+                    url: 'https://webradio-stream.herokuapp.com/authorized/channels/update/'+channelId,
+                    headers: {
+                        'Authorization':'Bearer ' + token
+                    },
+                    data: {
+                        name: name,
+                        avatar: downloadURLChannel,
+                    }
+                }).done((response) =>{
+
+                    if(response != undefined){
+                    
+                    $('#mychannels').html(response.message);
+                    $('#mychannels').css("display","block");
+                }
+                    console.log(response);
+                     reset();
+
+                }).fail( (err) =>{
+                     reset();
+                    console.log(err.responseJSON.message)
+
+                });// fin ajax
+
+            }); //fin update channel
+
+
+        } // end if
+
+    }).fail( (err) =>{
+        console.log(err.responseJSON.message)
+    });// end firebase
+
+
+   
+        //update password
+        $("#savePassword").click((e) => {
+            e.preventDefault(); 
+            disable();
+
+            let passworduse = $('#password').val();
+
+                $.ajax({
+                    type: "PUT", 
+                    url: "https://webradio-stream.herokuapp.com/authorized/users/password/"+userId,
+                    headers: {
+                        'Authorization':'Bearer ' + token
+                    },
+                    data: {
+                        password: passworduse,
+                    }
+                }).done((response) =>{
+                    reset();
+                    if(response != undefined){
+                        
+                        $('#mypassword').html(response.message); 
+                        $('#mypassword').css("display","block");
+                    }
+                    console.log(response);
+                }).fail((err) =>{
+                     
+                    console.log(err);
+                });
+        });// fin password
+        
+});
+</script>

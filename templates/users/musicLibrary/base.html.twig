@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'Users/head.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'Users/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'Users/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="mt-2">
+                    <div class="row">
+                        <div class="col-xl-12 ">
+                            <div class="row">
+                                <div class="col-sm-4 d-flex">
+                                    <a class="retour mt-auto mb-1" href="{{ path('profile.planning.index') }}" >
+                                        <i id="fleche-retour" class="fas fa-long-arrow-alt-left"></i>
+                                        <button id="bouton-retour" class="btn btn-sm rounded-pill">retour</button>
+                                    </a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h4 class="text-dark-color mt-auto" id="titreBibliotheque">Bibliothèque de musiques</h4>
+                                </div>
+                                <div class="col-sm-4 d-flex justify-content-end mt-2">
+                                    <label for="musicInput" class="bouton-ajout">
+                                        <input type="file" accept="audio/*" id="musicInput">
+                                        Ajouter une musique
+                                    </label>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="mt-3 row">
+                          <div class="col-xl-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Body -->
+                                <div class="card-body music">
+                                    <div class="row mr-0 ml-0 text-center" id="mySong">
+
+                                        <!--<div class="col-lg-3 col-md-4 col-6" >
+                                            <a href="#" class="d-block mb-4 h-100">
+                                                <img src="https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg" class="img-fluid img-thumbnail music">
+                                                <p class="text-center">music mp3</p>
+                                                <span class="delete">&times;</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-6" >
+                                            <a href="#" class="d-block mb-4 h-100">
+                                                <img src="https://i.pinimg.com/736x/06/2a/2c/062a2c6142605b83c340080137b84e57.jpg" class="img-fluid img-thumbnail music">
+                                                <p class="text-center">music mp3</p>
+                                                <span class="delete">&times;</span>
+                                            </a>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+
+                
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+{% include 'Users/MusicLibrary/script.html.twig' %}
+
+</body>
+
+</html>

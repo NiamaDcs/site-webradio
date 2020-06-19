@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'superAdmin/head.html.twig' %}
+    {% include 'superAdmin/Signalements/script.html.twig' %}
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% include 'superAdmin/sidebar.html.twig' %}
+        <!-- Main Content -->
+        <div id="content">
+            {% include 'superAdmin/navigation.html.twig' %}
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col-xl-6 d-flex">
+                        <a class="retour mt-auto mb-1" href="{{ path('superadmin.Signalements.index') }}" >
+                            <i id="fleche-retour" class="fas fa-long-arrow-alt-left"></i>
+                            <button id="bouton-retour" class="btn btn-sm rounded-pill">retour</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- table -->
+                    <div class="col-xl-12">
+                        <div class="card shadow mb-4">
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="row col-sm-12">
+                                    <div class="mb-3 table-responsive">
+                                        <table id="table" class"table table-bordered w-100" role="grid">
+                                            <thead>
+                                                <tr id='entete' role="row">
+                                                    <th scope='col'>Flux audio</th>
+                                                    <th scope='col'>Date et heure de commencement du stream</th>
+                                                    <th scope='col'>Date et heure du signalement</th>
+                                                    <th scope='col'>Motif</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id='malist' role="row">
+                                                
+                                                    <tr>
+                                                        <td><a href="#"></a></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                          <div class="pagination mt-2 d-flex justify-content-center" id="pagination_data">
+                                                
+                                           </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span class="text-black">Copyright &copy; Webradio - Stream - 2020</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+  {% include 'superAdmin/Signalements/script.html.twig' %}
+
+</body>
+
+</html>

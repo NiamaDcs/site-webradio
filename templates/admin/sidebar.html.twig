@@ -1,0 +1,63 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center mt-5" href="{{ path('admin.setting.index') }}">
+        <div class="sidebar-brand-text mx-3">Administrateur</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('admin.index') }}">
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+     <!-- Divider -->
+   
+ 
+<!-- Nav Item - Utilisateurs -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('admin.users.index') }}">
+            <span>Utilisateurs</span>
+        </a>
+    </li>    
+
+    <!-- Divider -->
+ 
+
+    <!-- Nav Item - chaines -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('admin.channel.index') }}">
+            <span>Chaînes</span>
+        </a>
+    </li>
+
+   
+
+    <!-- Nav Item - signalements -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('admin.signal.index') }}">
+            <span>Signalements</span>
+        </a>
+    </li>
+   
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block" id="deconnexion">
+
+
+    <!-- Nav Item - logout -->
+    <li class="nav-item active">
+        <a class="nav-link d-flex align-items-center justify-content-center" href="{{ path('logout') }}">
+            <span>Se déconnecter</span></a>
+    </li>
+
+</ul>
+<!-- End of Sidebar -->
+
+
+<!-- Content Wrapper -->
+<div id="content-wrapper">
