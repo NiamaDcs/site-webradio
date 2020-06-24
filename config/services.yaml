@@ -28,5 +28,5 @@ services:
     App\Service\:
         resource: '../src/Service'
     
-    App\Service\MonthService:
-        resource: '../src/Service/MonthService'
+    App\Service\Month:
+        resource: '../src/Service/Month'
