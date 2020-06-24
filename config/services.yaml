@@ -27,6 +27,3 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Service\:
         resource: '../src/Service'
-    
-    App\Service\Month:
-        resource: '../src/Service/Month'
