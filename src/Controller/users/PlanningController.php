@@ -5,8 +5,8 @@ namespace App\Controller\users;
 use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Services\Month;
-use App\Services\CalendarService;
+use App\Service\Month;
+use App\Service\CalendarService;
 
     /**
      * @Route("/user/planning")
