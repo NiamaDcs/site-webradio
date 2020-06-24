@@ -1,6 +1,6 @@
-<?php
+<?php 
 
-namespace App\Calendar;
+namespace App\Services;
 
 class Month {
 
@@ -120,4 +120,5 @@ class Month {
 
         return new Month($month, $year);
     }
+    
 }

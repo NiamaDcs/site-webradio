@@ -1,10 +1,9 @@
 <?php 
-namespace App\Calendar;
 
-use App\Calendar\Month;
+namespace App\Services;
+use App\Services\Month;
 
-class MyCalendar {
-
+class CalendarService {
     function myCalen ($month, $year) {
         
         $month = new Month($month, $year);

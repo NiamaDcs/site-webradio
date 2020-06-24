@@ -5,8 +5,8 @@ namespace App\Controller\users;
 use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Calendar\Month;
-use App\Calendar\MyCalendar;
+use App\Services\Month;
+use App\Services\CalendarService;
 
     /**
      * @Route("/user/planning")
@@ -18,7 +18,7 @@ class PlanningController extends BaseController{
      */
     public function index(): Response {
 
-        $cal = new MyCalendar();
+        $cal = new CalendarService();
 
         $dateComponents = getdate();
         $month = $dateComponents['mon'];
@@ -54,7 +54,7 @@ class PlanningController extends BaseController{
      */
     public function nextMonth() {
          
-        $cal = new MyCalendar();
+        $cal = new CalendarService();
 
         $dateComponents = getdate();
         $month = $dateComponents['mon'];
@@ -76,7 +76,7 @@ class PlanningController extends BaseController{
     */
     public function previousMonth() {
 
-        $cal = new MyCalendar(); 
+        $cal = new CalendarService(); 
 
         $dateComponents = getdate();
         $month = $dateComponents['mon'];
